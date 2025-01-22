@@ -9,7 +9,7 @@ export const Eventprovider = ({ children }) => {
     const [events, setEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const [showEventList, setShowEventList] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [appliedFilters, setAppliedFilters] = useState({
         searchTerm: '',
@@ -25,7 +25,7 @@ export const Eventprovider = ({ children }) => {
         });
 
     }, [events, appliedFilters]);
-   
+
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -35,26 +35,32 @@ export const Eventprovider = ({ children }) => {
                 if (!res.ok) throw new Error('something went wrong');
                 const data = await res.json();
                 setEvents(data);
-    
-                setIsLoading(false);  
-    
+
+                setIsLoading(false);
+
             } catch (err) {
                 setError(err.message);
-                setIsLoading(false);  
+                setIsLoading(false);
             }
         };
-    
+
         fetchEvents();
     }, []);
 
 
     const handleSubmit = () => {
+        setIsLoading(true);
+        setShowEventList(true);
         setAppliedFilters({ searchTerm });
-         
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2500);
+
     };
 
     const handleClearSearch = () => {
         setSearchTerm('');
+        setShowEventList(false);
     }
 
     return (
@@ -67,7 +73,8 @@ export const Eventprovider = ({ children }) => {
             filteredEvents,
             handleSubmit,
             handleClearSearch,
-            
+            showEventList,
+
         }}>
             {children}
         </EventContext.Provider>
