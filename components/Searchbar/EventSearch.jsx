@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
-import { Input } from '../input'
+import { Input } from '../ui/input'
 import { EventContext } from '@/contexts/EventContext'
-
 import{BiSearch} from 'react-icons/bi'
 
 const EventSearch = () => {

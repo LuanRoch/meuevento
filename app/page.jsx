@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext } from 'react'
-import Searchbar from '@/components/ui/Searchbar/Searchbar';
+import Searchbar from '@/components/Searchbar/Searchbar';
 import EventList from '@/components/Events/EventList';
 import { EventContext } from '@/contexts/EventContext';
 
@@ -11,9 +11,9 @@ const Home = () => {
   return (
 
     <div>
-      <div>
+      <div className=' flex flex-col justify-center items-center'>
         <Searchbar />
-        <button onClick={() => handleClearSearch()}>Limpar busca</button>
+        <button className='text-accent' onClick={() => handleClearSearch()}>Limpar busca</button>
       </div>
       {showEventList ? (
 
@@ -21,7 +21,18 @@ const Home = () => {
           <EventList />
         </div>
       ) : (
-        <div>homepage</div>
+        <div>
+          <div className='container mx-auto'>
+          <div>Proximos eventos </div>
+
+          <div>download app section </div>
+
+          <div>Recomendações para você</div>
+
+          </div>
+
+
+        </div>
       )}
 
     </div>

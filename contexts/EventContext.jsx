@@ -10,9 +10,15 @@ export const Eventprovider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showEventList, setShowEventList] = useState(false);
+
+
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedLocation, setSelectLocation] = useState('');
+
+
     const [appliedFilters, setAppliedFilters] = useState({
         searchTerm: '',
+        selectedLocation:'',
     });
 
     const filteredEvents = useMemo(() => {
@@ -21,7 +27,11 @@ export const Eventprovider = ({ children }) => {
             const matcheSearch = appliedFilters.searchTerm ? event.title.toLowerCase().includes
                 (appliedFilters.searchTerm.toLowerCase()) : true;
 
-            return matcheSearch;
+                
+                const matchesLocation = appliedFilters.selectedLocation ? event.location.toLowerCase
+                () === appliedFilters.selectedLocation.toLowerCase(): true;
+                return matcheSearch && matchesLocation;
+
         });
 
     }, [events, appliedFilters]);
@@ -51,7 +61,7 @@ export const Eventprovider = ({ children }) => {
     const handleSubmit = () => {
         setIsLoading(true);
         setShowEventList(true);
-        setAppliedFilters({ searchTerm });
+        setAppliedFilters({ searchTerm, selectedLocation});
         setTimeout(() => {
             setIsLoading(false);
         }, 2500);
@@ -61,6 +71,7 @@ export const Eventprovider = ({ children }) => {
     const handleClearSearch = () => {
         setSearchTerm('');
         setShowEventList(false);
+        setSelectLocation('');
     }
 
     return (
@@ -74,6 +85,8 @@ export const Eventprovider = ({ children }) => {
             handleSubmit,
             handleClearSearch,
             showEventList,
+            selectedLocation,
+            setSelectLocation
 
         }}>
             {children}
