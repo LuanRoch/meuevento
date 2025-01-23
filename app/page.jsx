@@ -16,18 +16,17 @@ const Home = () => {
         <button className='text-accent' onClick={() => handleClearSearch()}>Limpar busca</button>
       </div>
       {showEventList ? (
-
         <div className='container mx-auto'>
           <EventList />
         </div>
       ) : (
         <div>
           <div className='container mx-auto'>
-          <div>Proximos eventos </div>
+            <div>Proximos eventos </div>
 
-          <div>download app section </div>
+            <div>download app section </div>
 
-          <div>Recomendações para você</div>
+            <div>Recomendações para você</div>
 
           </div>
 

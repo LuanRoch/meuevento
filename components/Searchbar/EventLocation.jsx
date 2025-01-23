@@ -16,7 +16,7 @@ import { BiMap } from 'react-icons/bi';
 
 
 const EventLocation = () => {
-    const { events, selectedLocation, setSelectLocation } = useContext(EventContext);
+    const { events, selectedLocation, setSelectedLocation } = useContext(EventContext);
 
     const uniqueLocations = [
         'All locations',
@@ -48,7 +48,7 @@ const EventLocation = () => {
             </div>
             <Select
                 value={selectedLocation}
-                onValueChange={(value) => setSelectLocation(value)}>
+                onValueChange={(value) => setSelectedLocation(value)}>
 
                 <SelectTrigger className='bg-transparent border-none focus:ring-0 focus:ring-offset-0 text-left p-0'>
                     <SelectValue placeholder='Localização do evento' />

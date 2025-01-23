@@ -13,12 +13,16 @@ export const Eventprovider = ({ children }) => {
 
 
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedLocation, setSelectLocation] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('');
+
+    const [selectedDate, setSelectedDate] = useState('');
+
 
 
     const [appliedFilters, setAppliedFilters] = useState({
         searchTerm: '',
         selectedLocation:'',
+        selectedDate:null,
     });
 
     const filteredEvents = useMemo(() => {
@@ -61,7 +65,7 @@ export const Eventprovider = ({ children }) => {
     const handleSubmit = () => {
         setIsLoading(true);
         setShowEventList(true);
-        setAppliedFilters({ searchTerm, selectedLocation});
+        setAppliedFilters({ searchTerm, selectedLocation,  selectedDate,});
         setTimeout(() => {
             setIsLoading(false);
         }, 2500);
@@ -71,7 +75,8 @@ export const Eventprovider = ({ children }) => {
     const handleClearSearch = () => {
         setSearchTerm('');
         setShowEventList(false);
-        setSelectLocation('');
+        setSelectedLocation('');
+        setSelectedDate(null);
     }
 
     return (
@@ -86,8 +91,9 @@ export const Eventprovider = ({ children }) => {
             handleClearSearch,
             showEventList,
             selectedLocation,
-            setSelectLocation
-
+            setSelectedLocation,
+            selectedDate,
+            setSelectedDate,
         }}>
             {children}
         </EventContext.Provider>

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import EventSearch from './EventSearch';
 import { EventContext } from '@/contexts/EventContext';
 import EventLocation from './EventLocation';
+import EventDate from './EventDate';
 
 const Searchbar = () => {
   const { handleSubmit } = useContext(EventContext);
@@ -12,8 +13,11 @@ const Searchbar = () => {
      flex flex-col xl:flex-row items-center gap-6 mx-auto text-sm'>
 
       <EventSearch />
+
       <EventLocation />
-      <div>Data do evento</div>
+
+      <EventDate />
+
       <div>Evento</div>
       <button onClick={handleSubmit ? handleSubmit : () => alert('Ação não disponível')} 
               className='btn btn-accent' 
